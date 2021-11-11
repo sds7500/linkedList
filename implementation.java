@@ -14,6 +14,14 @@ class Node{
 
 public class implementation {
 
+    public static int size(Node head){
+        int res=0;
+        while(head!=null){
+            res++;
+            head=head.next;
+        }return res;
+    }
+
     //traversing linked list and printing using loop
     public static void print(Node head){
         Node curr=head;
@@ -48,6 +56,27 @@ public class implementation {
         while(curr.next!=null)curr=curr.next;
         curr.next=temp;
         return head;
+    }
+
+    //insertion at given position
+    public static Node insert_at_pos(int data,Node head,int pos){
+        if(pos<=0 || pos>size(head)+1){
+            System.out.println("Index out of range");
+            return head;
+        }else{
+            if(pos==1)return insert_at_begin(data, head);
+            else if(pos==size(head)+1)return insert_at_end(data, head);
+            int count=1;
+            Node curr=head;
+            while(count<pos-1){
+                curr=curr.next;
+                count++;
+            }
+            Node temp=new Node(data);
+            temp.next=curr.next;
+            curr.next=temp;
+            return head;
+        }
     }
 
     //deletion at the front
@@ -94,6 +123,12 @@ public class implementation {
         head=delete_at_end(head);
         print(head);
         head=delete_at_front(head);
+        print(head);
+        System.out.print("Enter the position from where data is to be inserted: ");
+        int pos=sc.nextInt();
+        System.out.print("Enter the data to be inserted: ");
+        int data=sc.nextInt();
+        head=insert_at_pos(data, head, pos);
         print(head);
     }
 }
