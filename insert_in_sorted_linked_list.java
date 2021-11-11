@@ -1,3 +1,5 @@
+// code to insert data in sorted manner in sorted linked list
+
 public class insert_in_sorted_linked_list {
     Node sortedInsert(Node head, int data) {
         Node node=new Node(data);
