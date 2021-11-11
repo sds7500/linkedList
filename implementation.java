@@ -102,6 +102,25 @@ public class implementation {
         return head;
     }
 
+    //deletion at position
+    public static Node delete_at_pos(Node head,int pos){
+        int size=size(head);
+        if(pos<=0 || pos>size){
+            System.out.println("Index out of range");
+            return null;
+        }
+        if(pos==1)return delete_at_front(head);
+        else if(pos==size)return delete_at_end(head);
+        Node curr=head;
+        int count=1;
+        while(count<pos-1){
+            curr=curr.next;
+            count++;
+        }
+        curr.next=curr.next.next;
+        return head;
+    }
+
     public static void main(String[] args){
         Node head=null;
         Scanner sc=new Scanner(System.in);
@@ -129,6 +148,10 @@ public class implementation {
         System.out.print("Enter the data to be inserted: ");
         int data=sc.nextInt();
         head=insert_at_pos(data, head, pos);
+        print(head);
+        System.out.print("Enter the position from where data is to be deleted: ");
+        int pos2=sc.nextInt();
+        delete_at_pos(head, pos2);
         print(head);
     }
 }
